@@ -6,16 +6,33 @@ const LegendariesService = {
             1,
             'MewTwo',
             'Descrição',
-            'Pokemon'
+            'Pokemon',
+            '1000.00',
+            '1000.00',
+            '1000.00',
+            '1000.00',
+            '1000.00',
+            '1000.00'
         )
         const pokemon2 = new LegendaryModel(
             2,
             'Pikachu',
             'Descrição',
-            'Pokemon'
+            'Pokemon',
+            '1000.00',
+            '1000.00',
+            '1000.00',
+            '1000.00',
+            '1000.00',
+            '1000.00'
         )
 
         return [pokemon, pokemon2];
+    },
+    listPokemonData: (pokemonName) => {
+        const pokemonList = LegendariesService.listLegendariesService();
+        const pokemon = pokemonList.find(item => item.name === pokemonName);
+        return pokemon;
     }
 }
 

@@ -5,6 +5,13 @@ const controller = {
         const listLegendaries = LegendariesService.listLegendariesService();
         
         response.json(listLegendaries);
+    },
+
+    ListData: (request, response) => {
+        const { name } = request.query;
+        const legendary = LegendariesService.listPokemonData(name);
+
+        return response.json(legendary);
     }
 }
 
