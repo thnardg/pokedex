@@ -6,5 +6,6 @@ const routes = new Router();
 
 routes.get('/legendaries', controller.ListData);
 routes.get('/legendaries', controller.index);
+routes.post('/legendaries', controller.create);
 
 module.exports = routes;
