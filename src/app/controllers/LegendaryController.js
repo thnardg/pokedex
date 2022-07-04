@@ -11,6 +11,10 @@ const controller = {
 
     ListData: (request, response) => {
         const { name } = request.query;
+
+        if (!name) {
+            return response.status(400).json("Você não passou o nome do Pokémon");
+        }
         const legendary = LegendariesService.listPokemonData(name);
 
         return response.json(legendary);
@@ -41,6 +45,33 @@ const controller = {
         );
 
         return response.json(legendary);
+    },
+    update: (request, response) => {
+        const { id } = request.params
+        const {
+            name,
+            description,
+            type,
+            healthPoints,
+            specialAttack,
+            defense,
+            attack,
+            experience,
+            specialDefence
+        } = request.body;
+
+        const updatedLegendary = UpdateLegendaryService.update(
+            id,
+            name,
+            description,
+            type,
+            healthPoints,
+            specialAttack,
+            defense,
+            attack,
+            experience,
+            specialDefence
+        )
     }
 }
 
