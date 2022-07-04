@@ -60,7 +60,7 @@ const controller = {
             specialDefence
         } = request.body;
 
-        const updatedLegendary = UpdateLegendaryService.update(
+        const updatedLegendary = UpdateLegendaryService.update (
             id,
             name,
             description,
@@ -72,6 +72,15 @@ const controller = {
             experience,
             specialDefence
         )
+
+        response.json(updatedLegendary)
+    },
+
+    delete: (request, response) => {
+        const { id } = request.params
+        const resultado = DeleteLegendaryService.delete(id);
+
+        response.send(resultado);
     }
 }
 
