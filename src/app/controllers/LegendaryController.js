@@ -1,5 +1,7 @@
 const LegendariesService = require('../services/LegendariesService')
 const CreateLegendaryService = require('../services/CreateLegendaryService')
+const UpdateLegendaryService = require('../services/UpdateLegendaryService');
+const DeleteLegendaryService = require('../services/DeleteLegendaryService');
 
 
 const controller = {
