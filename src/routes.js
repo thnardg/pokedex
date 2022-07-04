@@ -1,9 +1,11 @@
 const Router = require('express');
+const multer = require('multer');
+const multerConfig = require('./config/multer')
 
 const controller = require('./app/controllers/LegendaryController');
 const uploadFileController = require('./app/controllers/UploadFileController');
 
-const app = require('./app');
+const uploadFile = multer({ storage: multerConfig });
 
 const routes = new Router();
 
