@@ -1,8 +1,8 @@
 const uploadFileController = {
     storeFile: (request, response) => {
-        console.log(request.file)
+        const { filename } = req.file
 
-        response.json({ mensagem: "legal"});
+        response.json({ arquivo: filename });
     } 
 }
 
