@@ -12,8 +12,8 @@ const ListTreinadorService = {
     },
 
     ListTreinadorData: (name) => {
-      const TreinadorList = ListTreinadorService.listData();
-      const treinador = treinadorList.find((item) => item.name === name);
+      const TreinadorList = ListTreinadorService.ListData();
+      const treinador = TreinadorList.find((item) => item.name === name);
       if (!name) {
         return { error: "Treinador não encontrado" };
       }
