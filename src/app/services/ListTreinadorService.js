@@ -2,14 +2,15 @@ const TreinadorModel = require('../models/TreinadorModel');
 
 const ListTreinadorService = {
     ListData: () => {
-      const treinador = new TreinadorModel(
-        1, 
-        "AshKetchum", 
-        15, 
-        "Pallet";
-
-      return [trainer];
+    const treinador = new TreinadorModel (
+      1, 
+      "AshKetchum", 
+      15, 
+      "Pallet"
+    );
+    return [treinador];
     },
+
     ListTreinadorData: (name) => {
       const TreinadorList = ListTreinadorService.listData();
       const treinador = treinadorList.find((item) => item.name === name);
@@ -18,6 +19,6 @@ const ListTreinadorService = {
       }
       return treinador;
     },
-  };
+};
 
 module.exports = ListTreinadorService;
