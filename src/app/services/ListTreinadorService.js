@@ -6,7 +6,7 @@ const ListTreinadorService = {
         1, 
         "AshKetchum", 
         15, 
-        "Pallet");
+        "Pallet";
 
       return [trainer];
     },
