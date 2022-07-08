@@ -1,4 +1,4 @@
-const LegendariesService = require('../services/LegendariesService')
+const listLegendariesService = require('../services/ListLegendariesService')
 const CreateLegendaryService = require('../services/CreateLegendaryService')
 const UpdateLegendaryService = require('../services/UpdateLegendaryService');
 const DeleteLegendaryService = require('../services/DeleteLegendaryService');
@@ -6,7 +6,7 @@ const DeleteLegendaryService = require('../services/DeleteLegendaryService');
 
 const controller = {
     index: (request, response) => {
-        const listLegendaries = LegendariesService.listLegendariesService();
+        const listLegendaries = listLegendariesService.listLegendariesService();
         
         response.json(listLegendaries);
     },
@@ -17,7 +17,7 @@ const controller = {
         if (!name) {
             return response.status(400).json("Você não passou o nome do Pokémon");
         }
-        const legendary = LegendariesService.listPokemonData(name);
+        const legendary = listLegendariesService.listPokemonData(name);
 
         return response.json(legendary);
     },
