@@ -19,12 +19,12 @@ const treinadorController = {
         const { name, idade, cidade } = request.body;
         
         if (!name) {
-            return response.status(404).json("Você não adicionou um nome.");
+            return response.status(400).json("Você não adicionou um nome.");
         } else if (!idade) {
-            return response.status(404).json("Você não adicionou uma idade.");
+            return response.status(400).json("Você não adicionou uma idade.");
         }
 
-        const treinador = CreateTreinadorService.createTreinador(name, idade, cidade);
+        const treinador = CreateTreinadorService.create(name, idade, cidade);
         return response.json(treinador);
     },
 
