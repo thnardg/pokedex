@@ -10,7 +10,7 @@ const treinadorController = {
         if (!name) {
             return response.status(400).json("Você não passou o nome do treinador");
         }
-        const treinador = listTreinadorService.listTreinadorData(name);
+        const treinador = listTreinadorService.ListData(name);
 
         return response.json(treinador);
     },

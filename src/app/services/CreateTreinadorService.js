@@ -6,7 +6,7 @@ const CreateTreinadorService = {
 
         if (name.length < 5) {
             return {error: "Nome deve ter ao menos 5 caracteres."}
-        } else if (age <= 14 || idade >= 40){
+        } else if (idade <= 14 || idade >= 40){
             return {error: "A idade deve ser entre 15 e 39 anos."}
         } else if (cidade.toLowerCase() !== "pallet" && city.toLowerCase() !== "vermelion") {
             return {error: "Essa cidade não é válida."}
