@@ -1,6 +1,5 @@
 const multer = require("multer");
 const crypto = require("crypto");
-
 const { resolve, extname } = require("path");
 
 const multerConfig = multer.diskStorage({
@@ -10,6 +9,7 @@ const multerConfig = multer.diskStorage({
       if (erro) {
         return callback(erro);
       }
+
       return callback(
         null,
         valor.toString("hex") + extname(arquivo.originalname)
