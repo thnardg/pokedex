@@ -1,31 +1,31 @@
 const Router = require("express");
-const multer = require("multer");
-const multerConfig = require("./config/multer");
-const legendaryValidator = require("./middlewares/LegendaryValidator");
-const treinerValidator = require("./middlewares/TreinerValidator");
-
-const controller = require("./app/controllers/LegendaryController");
-const uploadFileController = require("./app/controllers/UploadFileController");
-
-const treinadorController = require("./app/controllers/TreinadorController");
-
-const uploadFile = multer({ storage: multerConfig });
-
 const routes = new Router();
 
-routes.get("/legendaries", controller.ListData);
-routes.post("/legendaries", legendaryValidator, controller.create);
-routes.put("/legendaries/:id", controller.update);
-routes.delete("/legendaries/:id", controller.delete);
-routes.post(
-    "/uploads",
-    uploadFile.single("file"),
-    uploadFileController.storeFile
-);
+const multer = require("multer");
+const multerConfig = require("./config/multer");
+const uploadFile = multer({ storage: multerConfig });
+const uploadFileController = require("./app/controllers/utils/UploadFileController");
 
-routes.get("/treinador", treinadorController.ListData);
-routes.post("/treinador", treinerValidator, treinadorController.create);
-routes.put("/treinador/:id", treinadorController.update);
-routes.delete("/treinador/:id", treinadorController.delete);
+const legendaryController = require("./app/controllers/legendary/LegendaryController");
+const legendaryValidator = require("./middlewares/LegendaryValidator");
+
+const trainerController = require("./app/controllers/trainer/TrainerController");
+const trainerValitador = require("./middlewares/TrainerValidator");
+
+routes.post("/legendaries", legendaryValidator, legendaryController.create);
+routes.get("/legendaries", legendaryController.ListData);
+routes.put("/legendaries/:id", legendaryController.update);
+routes.delete("/legendaries/:id", legendaryController.delete);
+
+routes.post("/trainers", trainerValitador, trainerController.create);
+routes.get("/trainers", trainerController.listAll);
+routes.put("/trainers/:id", trainerController.update);
+routes.delete("/trainers/:id", trainerController.delete);
+
+routes.post(
+  "/uploads",
+  uploadFile.single("file"),
+  uploadFileController.storeFile
+);
 
 module.exports = routes;
