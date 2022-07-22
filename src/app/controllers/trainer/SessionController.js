@@ -6,17 +6,15 @@ const SessionController = {
   create(request, response) {
     const { email, password } = request.body;
 
-    const trainer = ListTrainerService.listAll();
+    const trainer = ListTrainerService.FindTrainer();
 
-    const trainerIndex = trainer.findIndex((t) => t.email === email);
-
-    if (trainerIndex < 0) {
+    /*     if (trainerIndex < 0) {
       return response.status(401).json({ error: "Trainer not found" });
     }
 
     if (trainer[trainerIndex].password !== password) {
       return response.status(401).json({ error: "Invalid password" });
-    }
+    } */
 
     const { id, name } = trainer;
 
@@ -26,6 +24,9 @@ const SessionController = {
         name,
         email,
       },
+      token: jwt.sign({ id }, "a07bda8fd5e39462b4c3d860a36f6b4d", {
+        expiresIn: "5d",
+      }),
     });
   },
 };
