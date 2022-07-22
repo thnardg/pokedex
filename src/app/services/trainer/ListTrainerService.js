@@ -1,19 +1,24 @@
-const TreinadorModel = require("../models/TreinadorModel");
+const TrainerModel = require("../../models/trainer/TrainerModel");
 
-const ListTreinadorService = {
-  ListData: () => {
-    const treinador = new TreinadorModel(1, "AshKetchum", 15, "Pallet");
-    return [treinador];
-  },
+const ListTrainerService = {
+  listAll: () => {
+    const trainers = [
+      new TrainerModel(
+        "5ed061a8-dacb-4b14-af79-7e7abea09b45",
+        "Daniel",
+        32,
+        "Pallet"
+      ),
+      new TrainerModel(
+        "5ed061a8-dacb-4b14-af79-7e7abea09b47",
+        "Larissa",
+        25,
+        "Vermelion"
+      ),
+    ];
 
-  ListTreinadorData: (name) => {
-    const TreinadorList = ListTreinadorService.ListData();
-    const treinador = TreinadorList.find((item) => item.name === name);
-    if (!name) {
-      return { error: "Treinador não encontrado" };
-    }
-    return treinador;
+    return trainers;
   },
 };
 
-module.exports = ListTreinadorService;
+module.exports = ListTrainerService;

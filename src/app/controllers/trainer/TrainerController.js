@@ -1,49 +1,66 @@
-const CreateTreinadorService = require("../../services/CreateTreinadorService");
-const listTreinadorService = require("../../services/ListTreinadorService");
-const UpdateTreinadorService = require("../../services/UpdateTreinadorService");
-const DeleteTreinadorService = require("../../services/DeleteLegendaryService");
+const CreateTrainerService = require("../../services/trainer/CreateTrainerService");
+const ListTrainerService = require("../../services/trainer/ListTrainerService");
+const UpdateTrainerService = require("../../services/trainer/UpdateTrainerService");
 
-const treinadorController = {
-    ListData: (request, response) => {
-        const { name } = request.query;
+const controller = {
+  listAll: (request, response) => {
+    const trainers = ListTrainerService.listAll();
 
-        if (!name) {
-            return response
-                .status(400)
-                .json("Você não passou o nome do treinador");
-        }
-        const treinador = listTreinadorService.ListData(name);
+    return response.send(trainers);
+  },
+  create: (request, response) => {
+    const { name, email, password, age, city } = request.body;
 
-        return response.json(treinador);
-    },
+    if (!name) {
+      return response.status(400).json({
+        message: "Nome é obrigatório",
+      });
+    }
 
-    create: (request, response) => {
-        const { name, idade, cidade } = request.body;
+    if (!age) {
+      return response.status(400).json({
+        message: "Idade é obrigatório",
+      });
+    }
 
-        if (!name) {
-            return response.status(400).json("Você não adicionou um nome.");
-        } else if (!idade) {
-            return response.status(400).json("Você não adicionou uma idade.");
-        }
+    const createdTrainer = CreateTrainerService.create(
+      name,
+      email,
+      password,
+      age,
+      city
+    );
 
-        const treinador = CreateTreinadorService.create(name, idade, cidade);
-        return response.json(treinador);
-    },
+    if (!createdTrainer.sucess) {
+      return response.status(400).json(createdTrainer.message);
+    }
 
-    update: (request, response) => {
-        const { id } = request.params;
-        const dados = request.body;
+    return response.status(200).json(createdTrainer.message);
+  },
+  update: (request, response) => {
+    const { id } = request.params;
+    const { name, age, city } = request.body;
 
-        const updateTreinador = UpdateTreinadorService.update(id, dados);
-        response.json(updateTreinador);
-    },
+    if (!name) {
+      return response.status(400).json({
+        message: "Nome é obrigatório",
+      });
+    }
 
-    delete: (request, response) => {
-        const { id } = request.params;
-        const deleteTreinador = DeleteTreinadorService.delete(id);
+    if (!age) {
+      return response.status(400).json({
+        message: "Idade é obrigatório",
+      });
+    }
 
-        response.json(deleteTreinador);
-    },
+    const updatedTrainer = UpdateTrainerService.update(id, name, age, city);
+
+    if (!updatedTrainer.sucess) {
+      return response.status(400).json(updatedTrainer.message);
+    }
+
+    return response.status(200).json(updatedTrainer.message);
+  },
 };
 
-module.exports = treinadorController;
+module.exports = controller;
