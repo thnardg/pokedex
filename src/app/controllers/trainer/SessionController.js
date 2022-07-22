@@ -20,7 +20,13 @@ const SessionController = {
 
     const { id, name } = trainer;
 
-    return response.json({});
+    return response.json({
+      trainer: {
+        id,
+        name,
+        email,
+      },
+    });
   },
 };
 
