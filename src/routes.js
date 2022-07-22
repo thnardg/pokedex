@@ -12,6 +12,8 @@ const legendaryValidator = require("./middlewares/LegendaryValidator");
 const trainerController = require("./app/controllers/trainer/TrainerController");
 const trainerValitador = require("./middlewares/TrainerValidator");
 
+const SessionController = require("./app/controllers/trainer/SessionController");
+
 routes.post("/legendaries", legendaryValidator, legendaryController.create);
 routes.get("/legendaries", legendaryController.ListData);
 routes.put("/legendaries/:id", legendaryController.update);
