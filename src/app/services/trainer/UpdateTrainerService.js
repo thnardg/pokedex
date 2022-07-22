@@ -16,24 +16,10 @@ const UpdateTrainerService = {
       };
     }
 
-    if (name.length < 5) {
-      return {
-        sucess: false,
-        message: "Nome precisa ter pelo menos 5 caracteres",
-      };
-    }
-
     if (age < 15 || age >= 40) {
       return {
         sucess: false,
         message: "Somente maiores de 15 e menores de 40 anos podem participar",
-      };
-    }
-
-    if (city !== "Pallet" && city !== "Vermelion") {
-      return {
-        sucess: false,
-        message: "Somente moradores de Pallet e Vermelion podem participar",
       };
     }
 
