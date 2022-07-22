@@ -1,32 +1,54 @@
 const ListTrainerService = require("./ListTrainerService");
 
 const UpdateTrainerService = {
-    update: (name, idade, cidade) => {
-        const trainers = ListTrainerService.listTreinadorService();
-        const trainerIndex = trainers.findIndex(
-            (item) => item.id === Number(id)
-        );
+  update: (id, name, age, city) => {
+    const trainers = ListTrainerService.listAll();
 
-        if (trainerIndex === -1) {
-            return { error: "Treinador não encontrado" };
-        } else if (name.length < 5) {
-            return { error: "O nome precisa ter no mínimo 5 caracteres" };
-        } else if (idade <= 14 || idade >= 40) {
-            return { error: "A idade deve ser entre 15 e 39 anos." };
-        } else if (
-            cidade.toLowerCase() !== "pallet" &&
-            cidade.toLowerCase() !== "vermelion"
-        ) {
-            return { error: "A cidade não é válida" };
-        }
+    const updateTrainer = trainers.find((trainer) => trainer.id === id);
+    const updateTrainerIndex = trainers.findIndex(
+      (trainer) => trainer.id === id
+    );
 
-        trainers[trainerIndex] = { name, idade, cidade };
+    if (!updateTrainer) {
+      return {
+        sucess: false,
+        message: "Treinador não encontrado",
+      };
+    }
 
-        return {
-            id,
-            ...trainer[trainerIndex],
-        };
-    },
+    if (name.length < 5) {
+      return {
+        sucess: false,
+        message: "Nome precisa ter pelo menos 5 caracteres",
+      };
+    }
+
+    if (age < 15 || age >= 40) {
+      return {
+        sucess: false,
+        message: "Somente maiores de 15 e menores de 40 anos podem participar",
+      };
+    }
+
+    if (city !== "Pallet" && city !== "Vermelion") {
+      return {
+        sucess: false,
+        message: "Somente moradores de Pallet e Vermelion podem participar",
+      };
+    }
+
+    trainers[updateTrainerIndex] = {
+      id,
+      name,
+      age,
+      city,
+    };
+
+    return {
+      sucess: true,
+      message: trainers[updateTrainerIndex],
+    };
+  },
 };
 
-module.exports = UpdateTreinadorService;
+module.exports = UpdateTrainerService;

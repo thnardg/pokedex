@@ -1,23 +1,31 @@
-const TrainerModel = require("../../models/TrainerModel");
 const { v4 } = require("uuid");
+const TrainerModel = require("../../models/trainer/TrainerModel");
 
 const CreateTrainerService = {
-    createTrainer: (name, idade, cidade) => {
-        if (name.length < 5) {
-            return { error: "Nome deve ter ao menos 5 caracteres." };
-        } else if (idade <= 14 || idade < 40) {
-            return { error: "A idade deve ser entre 15 e 39 anos." };
-        } else if (
-            cidade.toLowerCase() !== "pallet" &&
-            cidade.toLowerCase() !== "vermelion"
-        ) {
-            return { error: "Essa cidade não é válida." };
-        }
+  create: (name, email, password, age, city) => {
+    if (name.length < 5) {
+      const createdTrainer = {
+        sucess: false,
+        message: "Nome precisa ter pelo menos 5 caracteres",
+      };
 
-        const novoTrainer = new TrainerModel(v4(), name, idade, cidade);
+      return createdTrainer;
+    }
 
-        return novoTreinador;
-    },
+    if (age < 15 || age >= 40) {
+      return {
+        sucess: false,
+        message: "Somente maiores de 15 e menores de 40 anos podem participar",
+      };
+    }
+
+    const newTrainer = new TrainerModel(v4(), name, email, password, age, city);
+
+    return {
+      sucess: true,
+      message: newTrainer,
+    };
+  },
 };
 
 module.exports = CreateTrainerService;
