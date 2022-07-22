@@ -22,6 +22,8 @@ routes.get("/trainers", trainerController.listAll);
 routes.put("/trainers/:id", trainerController.update);
 routes.delete("/trainers/:id", trainerController.delete);
 
+routes.post("/session", SessionController.create);
+
 routes.post(
   "/uploads",
   uploadFile.single("file"),
