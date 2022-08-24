@@ -1,31 +1,9 @@
-const LegendaryModel = require("../../models/legendary/LegendaryModel");
+import LegendaryModel from "../../models/legendary/LegendaryModel.js";
 
 const ListLegendariesService = {
   listLegendariesService: () => {
-    const pokemon = new LegendaryModel(
-      1,
-      "MewTwo",
-      "Descrição",
-      "pokemon",
-      "1000,00",
-      "1000,00",
-      "1000,00",
-      "1000,00",
-      "1000,00",
-      "1000,00"
-    );
-    const pokemon2 = new LegendaryModel(
-      2,
-      "Pikachu",
-      "Descrição",
-      "pokemon",
-      "1000,00",
-      "1000,00",
-      "1000,00",
-      "1000,00",
-      "1000,00",
-      "1000,00"
-    );
+    const pokemon = new LegendaryModel(1, "MewTwo", "Descrição", "pokemon", "1000,00", "1000,00", "1000,00", "1000,00", "1000,00", "1000,00");
+    const pokemon2 = new LegendaryModel(2, "Pikachu", "Descrição", "pokemon", "1000,00", "1000,00", "1000,00", "1000,00", "1000,00", "1000,00");
 
     return [pokemon, pokemon2];
   },
@@ -37,4 +15,4 @@ const ListLegendariesService = {
   },
 };
 
-module.exports = ListLegendariesService;
+export default ListLegendariesService;

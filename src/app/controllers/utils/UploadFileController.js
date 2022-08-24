@@ -6,4 +6,4 @@ const updateFileController = {
   },
 };
 
-module.exports = updateFileController;
+export default updateFileController;

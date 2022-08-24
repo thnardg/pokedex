@@ -1,8 +1,8 @@
-const CreateTrainerService = require("../../services/trainer/CreateTrainerService");
-const ListTrainerService = require("../../services/trainer/ListTrainerService");
-const UpdateTrainerService = require("../../services/trainer/UpdateTrainerService");
+import CreateTrainerService from "../../services/trainer/CreateTrainerService.js";
+import ListTrainerService from "../../services/trainer/ListTrainerService.js";
+import UpdateTrainerService from "../../services/trainer/UpdateTrainerService.js";
 
-const controller = {
+const trainerController = {
   listAll: (request, response) => {
     const trainers = ListTrainerService.listAll();
 
@@ -23,13 +23,7 @@ const controller = {
       });
     }
 
-    const createdTrainer = CreateTrainerService.create(
-      name,
-      email,
-      password,
-      age,
-      city
-    );
+    const createdTrainer = CreateTrainerService.create(name, email, password, age, city);
 
     if (!createdTrainer.sucess) {
       return response.status(400).json(createdTrainer.message);
@@ -61,6 +55,13 @@ const controller = {
 
     return response.status(200).json(updatedTrainer.message);
   },
+  delete: (request, response) => {
+    const { id } = request.params;
+
+    const resultado = DeleteTrainerService.delete(id);
+
+    response.send(resultado);
+  },
 };
 
-module.exports = controller;
+export default trainerController;

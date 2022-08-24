@@ -1,4 +1,4 @@
-const TrainerModel = require("../../models/trainer/TrainerModel");
+import TrainerModel from "../../models/trainer/TrainerModel.js";
 
 const ListTrainerService = {
   listAll: () => {
@@ -11,25 +11,16 @@ const ListTrainerService = {
         age: 32,
         city: "Pallet"
       }, */
-      new TrainerModel(
-        "5ed061a8-dacb-4b14-af79-7e7abea09b45",
-        "Bruno",
-        "boliveira@digitalhouse.com",
-        "123456",
-        25,
-        "Cariacica -"
-      ),
+      new TrainerModel("5ed061a8-dacb-4b14-af79-7e7abea09b45", "Bruno", "boliveira@digitalhouse.com", "123456", 25, "Cariacica -"),
     ];
 
     return trainers;
   },
   FindTrainer: (email, password) => {
-    const trainer = ListTrainerService.listAll().find(
-      (trainer) => trainer.email === email && trainer.password === password
-    );
+    const trainer = ListTrainerService.listAll().find((trainer) => trainer.email === email && trainer.password === password);
 
     return trainer;
   },
 };
 
-module.exports = ListTrainerService;
+export default ListTrainerService;

@@ -1,20 +1,18 @@
-const ListTreinadorService = require("../ListTreinadorService");
+import ListTrainerService from "../ListTreinadorService.js";
 
-const DeleteTreinadorService = {
-    delete: (id) => {
-        const treinador = ListTreinadorService.listTreinadorService();
-        const treinadorIndex = treinador.findIndex(
-            (item) => item.id === Number(id)
-        );
+const DeleteTrainerService = {
+  delete: (id) => {
+    const trainer = ListTrainerService.listTrainerService();
+    const trainerIndex = trainer.findIndex((item) => item.id === Number(id));
 
-        if (treinadorIndex === -1) {
-            return { erro: "Treinador não encontrado" };
-        }
+    if (trainerIndex === -1) {
+      return { erro: "Treinador não encontrado" };
+    }
 
-        treinador.splice(treinadorIndex, 1);
+    trainer.splice(trainerIndex, 1);
 
-        return { mensagem: "Treinador removido com sucesso" };
-    },
+    return { mensagem: "Treinador removido com sucesso" };
+  },
 };
 
-module.exports = DeleteTreinadorService;
+export default DeleteTrainerService;

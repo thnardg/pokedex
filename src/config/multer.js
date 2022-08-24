@@ -1,6 +1,6 @@
-const multer = require("multer");
-const crypto = require("crypto");
-const { resolve, extname } = require("path");
+import multer from "multer";
+import crypto from "crypto";
+import { resolve, extname } from "path";
 
 const multerConfig = multer.diskStorage({
   destination: resolve(__dirname, "..", "..", "uploads"),
@@ -10,12 +10,9 @@ const multerConfig = multer.diskStorage({
         return callback(erro);
       }
 
-      return callback(
-        null,
-        valor.toString("hex") + extname(arquivo.originalname)
-      );
+      return callback(null, valor.toString("hex") + extname(arquivo.originalname));
     });
   },
 });
 
-module.exports = multerConfig;
+export default multerConfig;

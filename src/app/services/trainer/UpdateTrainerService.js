@@ -1,13 +1,11 @@
-const ListTrainerService = require("./ListTrainerService");
+import ListTrainerService from "./ListTrainerService.js";
 
 const UpdateTrainerService = {
   update: (id, name, age, city) => {
     const trainers = ListTrainerService.listAll();
 
     const updateTrainer = trainers.find((trainer) => trainer.id === id);
-    const updateTrainerIndex = trainers.findIndex(
-      (trainer) => trainer.id === id
-    );
+    const updateTrainerIndex = trainers.findIndex((trainer) => trainer.id === id);
 
     if (!updateTrainer) {
       return {
@@ -37,4 +35,4 @@ const UpdateTrainerService = {
   },
 };
 
-module.exports = UpdateTrainerService;
+export default UpdateTrainerService;

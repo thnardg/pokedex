@@ -1,6 +1,6 @@
-const jwt = require("jsonwebtoken");
-const ListTrainerService = require("../../services/trainer/ListTrainerService");
-const controller = require("../../controllers/trainer/TrainerController");
+import jwt from "jsonwebtoken";
+import ListTrainerService from "../../services/trainer/ListTrainerService.js";
+import controller from "../../controllers/trainer/TrainerController";
 
 const SessionController = {
   create: (request, response) => {
@@ -27,4 +27,4 @@ const SessionController = {
   },
 };
 
-module.exports = SessionController;
+export default SessionController;

@@ -1,18 +1,7 @@
-const ListLegendariesService = require("../../services/legendary/ListLegendariesService");
+import ListLegendariesService from "../../services/legendary/ListLegendariesService.js";
 
 const UpdateLegendaryService = {
-  update: (
-    id,
-    name,
-    description,
-    type,
-    healthPoints,
-    specialAttack,
-    defense,
-    attack,
-    experience,
-    specialDefense
-  ) => {
+  update: (id, name, description, type, healthPoints, specialAttack, defense, attack, experience, specialDefense) => {
     const pokemons = ListLegendariesService.listLegendariesService();
     const pokemonIndice = pokemons.findIndex((item) => item.id === Number(id));
 
@@ -39,4 +28,4 @@ const UpdateLegendaryService = {
   },
 };
 
-module.exports = UpdateLegendaryService;
+export default UpdateLegendaryService;

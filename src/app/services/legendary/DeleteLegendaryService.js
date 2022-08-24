@@ -1,4 +1,4 @@
-const ListLegendariesService = require("../../services/legendary/ListLegendariesService");
+import ListLegendariesService from "../../services/legendary/ListLegendariesService.js";
 
 const DeleteLegendaryService = {
   delete: (id) => {
@@ -15,4 +15,4 @@ const DeleteLegendaryService = {
   },
 };
 
-module.exports = DeleteLegendaryService;
+export default DeleteLegendaryService;
