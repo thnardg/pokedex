@@ -1,8 +1,9 @@
-import ListTrainerService from "./ListTrainerService.js";
+import ListTrainersService from "./ListTrainersService.js";
 
-const UpdateTrainerService = {
-  update: (id, name, age, city) => {
-    const trainers = ListTrainerService.listAll();
+class UpdateTrainerService {
+  constructor() {}
+  update(id, name, age, city) {
+    const trainers = ListTrainersService.list();
 
     const updateTrainer = trainers.find((trainer) => trainer.id === id);
     const updateTrainerIndex = trainers.findIndex((trainer) => trainer.id === id);
@@ -32,7 +33,7 @@ const UpdateTrainerService = {
       sucess: true,
       message: trainers[updateTrainerIndex],
     };
-  },
-};
+  }
+}
 
 export default UpdateTrainerService;
