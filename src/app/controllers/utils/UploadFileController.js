@@ -1,9 +1,11 @@
-const updateFileController = {
-  storeFile: (request, response) => {
+class UpdateFileController {
+  constructor() {}
+
+  static storeFile(request, response) {
     const { filename } = request.file;
 
     response.json({ arquivo: filename });
-  },
-};
+  }
+}
 
-export default updateFileController;
+export default UpdateFileController;

@@ -1,8 +1,9 @@
 import { v4 } from "uuid";
 import TrainerModel from "../../models/trainer/TrainerModel.js";
 
-const CreateTrainerService = {
-  create: (name, email, password, age, city) => {
+class CreateTrainerService {
+  constructor() {}
+  create(name, email, password, age, city) {
     if (name.length < 5) {
       const createdTrainer = {
         sucess: false,
@@ -25,7 +26,7 @@ const CreateTrainerService = {
       sucess: true,
       message: newTrainer,
     };
-  },
-};
+  }
+}
 
 export default CreateTrainerService;

@@ -1,15 +1,17 @@
-import ListLegendariesService from "../../services/legendary/ListLegendariesService.js";
+import ListAllLegendariesService from "./ListAllLegendariesService.js";
 
-const UpdateLegendaryService = {
-  update: (id, name, description, type, healthPoints, specialAttack, defense, attack, experience, specialDefense) => {
-    const pokemons = ListLegendariesService.listLegendariesService();
-    const pokemonIndice = pokemons.findIndex((item) => item.id === Number(id));
+class UpdateLegendaryService {
+  constructor() {}
 
-    if (pokemonIndice === -1) {
+  update(id, name, description, type, healthPoints, specialAttack, defense, attack, experience, specialDefense) {
+    const pokemons = ListAllLegendariesService.list();
+    const pokemonIndex = pokemons.findIndex((item) => item.id === Number(id));
+
+    if (pokemonIndex === -1) {
       return { erro: "Pokemon não encontrado" };
     }
 
-    pokemons[pokemonIndice] = {
+    pokemons[pokemonIndex] = {
       name,
       description,
       type,
@@ -23,9 +25,9 @@ const UpdateLegendaryService = {
 
     return {
       id,
-      ...pokemons[pokemonIndice],
+      ...pokemons[pokemonIndex],
     };
-  },
-};
+  }
+}
 
 export default UpdateLegendaryService;

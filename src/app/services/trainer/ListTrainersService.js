@@ -1,7 +1,8 @@
 import TrainerModel from "../../models/trainer/TrainerModel.js";
 
-const ListTrainerService = {
-  listAll: () => {
+class ListTrainersService {
+  constructor() {}
+  list() {
     const trainers = [
       /* new TrainerModel({
         id: '5ed061a8-dacb-4b14-af79-7e7abea09b45',
@@ -15,12 +16,12 @@ const ListTrainerService = {
     ];
 
     return trainers;
-  },
-  FindTrainer: (email, password) => {
-    const trainer = ListTrainerService.listAll().find((trainer) => trainer.email === email && trainer.password === password);
+  }
+  FindTrainer(email, password) {
+    const trainer = ListTrainerService.list().find((trainer) => trainer.email === email && trainer.password === password);
 
     return trainer;
-  },
-};
+  }
+}
 
-export default ListTrainerService;
+export default ListTrainersService;

@@ -1,12 +1,13 @@
 import jwt from "jsonwebtoken";
-import ListTrainerService from "../../services/trainer/ListTrainerService.js";
-import controller from "../../controllers/trainer/TrainerController";
+import ListTrainersService from "../../services/trainer/ListTrainersService.js";
 
-const SessionController = {
-  create: (request, response) => {
+class SessionController {
+  constructor() {}
+
+  static create(request, response) {
     const { email, password } = request.body;
 
-    const trainer = ListTrainerService.FindTrainer(email, password);
+    const trainer = ListTrainersService.FindTrainer(email, password);
 
     if (!trainer) {
       return response.status(401).json({ error: "Trainer not found" });
@@ -24,7 +25,7 @@ const SessionController = {
         expiresIn: "5d",
       }),
     });
-  },
-};
+  }
+}
 
 export default SessionController;

@@ -1,8 +1,9 @@
-import ListTrainerService from "../ListTreinadorService.js";
+import ListTrainersService from "./ListTrainersService.js";
 
-const DeleteTrainerService = {
-  delete: (id) => {
-    const trainer = ListTrainerService.listTrainerService();
+class DeleteTrainerService {
+  constructor() {}
+  delete(id) {
+    const trainer = ListTrainersService.list();
     const trainerIndex = trainer.findIndex((item) => item.id === Number(id));
 
     if (trainerIndex === -1) {
@@ -12,7 +13,7 @@ const DeleteTrainerService = {
     trainer.splice(trainerIndex, 1);
 
     return { mensagem: "Treinador removido com sucesso" };
-  },
-};
+  }
+}
 
 export default DeleteTrainerService;
