@@ -1,9 +1,11 @@
-import ListAllLegendariesService from "./ListAllLegendariesService.js";
+import ListLegendariesService from "./ListLegendariesService.js";
 
-class DeleteLegendaryService {
-  constructor() {}
+export default class DeleteLegendaryService {
+  constructor() {
+    this.service = new ListLegendariesService();
+  }
   delete(id) {
-    const pokemons = ListAllLegendariesService.list();
+    const pokemons = this.service.listAll();
     const pokemonIndex = pokemons.findIndex((item) => item.id === Number(id));
 
     if (pokemonIndex === -1) {
@@ -15,5 +17,3 @@ class DeleteLegendaryService {
     return { mensagem: "Pokémon removido com sucesso" };
   }
 }
-
-export default DeleteLegendaryService;

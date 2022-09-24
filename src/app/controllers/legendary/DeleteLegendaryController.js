@@ -1,15 +1,15 @@
-import DeleteLegendaryService from "../../services/legendary/DeleteLegendaryService.js";
+import DeleteLegendaryService from "../../services/legendary/DeleteLegendaryService";
 
-class DeleteLegendaryController {
-  constructor() {}
+export default class DeleteLegendaryController {
+  constructor() {
+    this.service = new DeleteLegendaryService();
+  }
 
-  delete(request, response) {
+  async delete(request, response) {
     const { id } = request.params;
 
-    const resultado = DeleteLegendaryService.delete(id);
+    const resultado = await this.service.delete(id);
 
     response.send(resultado);
   }
 }
-
-export default DeleteLegendaryController;

@@ -1,19 +1,15 @@
-import ListAllLegendariesService from "../../services/legendary/ListAllLegendariesService.js";
+import ListLegendariesService from "../../services/legendary/ListLegendariesService";
 
-class ListLegendaryController {
-  constructor() {}
+export default class ListLegendariesController {
+  constructor() {
+    this.service = new ListLegendariesService();
+  }
 
-  list(request, response) {
+  async index(request, response) {
     const { name } = request.query;
 
-    if (!name) {
-      return response.status(400).json({ erro: "Você não passou o nome do pokemon" });
-    }
+    const legendaries = await this.service.listAll(name);
 
-    const legendary = ListAllLegendariesService.listPokemonData(name);
-
-    return response.json(legendary);
+    response.json(legendaries);
   }
 }
-
-export default ListLegendaryController;
