@@ -6,7 +6,7 @@ import databaseConfig from "../config/database";
 
 const models = [TrainerModel];
 
-class Database {
+export default class Database {
   constructor() {
     this.init();
   }

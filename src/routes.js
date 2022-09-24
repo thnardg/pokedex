@@ -35,19 +35,37 @@ const createLegendaryController = new CreateLegendaryController();
 const updateLegendaryController = new UpdateLegendaryController();
 const deleteLegendaryController = new DeleteLegendaryController();
 
-routes.get("/legendaries", listAllLegendariesController.list);
-routes.get("/legendaries", listLegendaryController.list);
-routes.post("/legendaries", legendaryValidator, createLegendaryController.create);
-routes.put("/legendaries/:id", updateLegendaryController.update);
-routes.delete("/legendaries/:id", deleteLegendaryController.delete);
+routes.get("/legendaries", (req, res) =>
+  listAllLegendariesController.list(req, res)
+);
+routes.get("/legendaries", (req, res) =>
+  listLegendaryController.list(req, res)
+);
+routes.post("/legendaries", legendaryValidator, (req, res) =>
+  createLegendaryController.create(req, res)
+);
+routes.put("/legendaries/:id", (req, res) =>
+  updateLegendaryController.update(req, res)
+);
+routes.delete("/legendaries/:id", (req, res) =>
+  deleteLegendaryController.delete(req, res)
+);
 
-routes.get("/trainers", listAllTrainersController.list);
-routes.get("/trainers", listTrainerController.list);
-routes.post("/trainers", trainerValidator, createTrainerController.create);
-routes.put("/trainers/:id", updateTrainerController.update);
-routes.delete("/trainers/:id", deleteTrainerController.delete);
+routes.get("/trainers", (req, res) => listAllTrainersController.list(req, res));
+routes.get("/trainers", (req, res) => listTrainerController.list(req, res));
+routes.post("/trainers", trainerValidator, (req, res) =>
+  createTrainerController.create(req, res)
+);
+routes.put("/trainers/:id", (req, res) =>
+  updateTrainerController.update(req, res)
+);
+routes.delete("/trainers/:id", (req, res) =>
+  deleteTrainerController.delete(req, res)
+);
 
-routes.post("/session", SessionController.create);
-routes.post("/uploads", uploadFile.single("file"), uploadFileController.storeFile);
+routes.post("/session", (req, res) => SessionController.create(req, res));
+routes.post("/uploads", uploadFile.single("file"), (req, res) =>
+  uploadFileController.storeFile(req, res)
+);
 
 export default routes;

@@ -1,16 +1,26 @@
 import jwt from "jsonwebtoken";
-import ListTrainersService from "../../services/trainer/ListTrainersService.js";
-
-class SessionController {
+import ListTrainerService from "../../services/trainer/ListTrainerService";
+import HashPassword from "../../utils/HashPassword";
+export default class SessionController {
   constructor() {}
 
-  static create(request, response) {
+  static async create(request, response) {
     const { email, password } = request.body;
 
-    const trainer = ListTrainersService.FindTrainer(email, password);
+    const service = new ListTrainerService();
+    const trainer = await service.listOne(email);
 
     if (!trainer) {
       return response.status(401).json({ error: "Trainer not found" });
+    }
+
+    const isValidPassword = HashPassword.validate(
+      password,
+      trainer.passwordHash
+    );
+
+    if (!isValidPassword) {
+      return response.status(401).json({ error: "Invalid password" });
     }
 
     const { id, name } = trainer;
@@ -21,11 +31,9 @@ class SessionController {
         name,
         email,
       },
-      token: jwt.sign({ id }, "a07bda8fd5e39462b4c3d860a36f6b4d", {
+      token: jwt.sign({ id }, process.env.JWT_PRIVATE_KEY, {
         expiresIn: "5d",
       }),
     });
   }
 }
-
-export default SessionController;

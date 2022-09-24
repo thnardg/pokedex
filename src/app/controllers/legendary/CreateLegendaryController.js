@@ -1,15 +1,35 @@
-import CreateLegendaryService from "../../services/legendary/CreateLegendaryService.js";
+import CreateLegendaryService from "../../services/legendary/CreateLegendaryService";
 
-class CreateLegendaryController {
-  constructor() {}
+export default class CreateLegendaryController {
+  constructor() {
+    this.service = new CreateLegendaryService();
+  }
 
-  create(request, response) {
-    const { name, description, type, healthPoints, specialAttack, defense, attack, experience, specialDefense } = request.body;
+  async create(request, response) {
+    const {
+      name,
+      description,
+      type,
+      healthPoints,
+      specialAttack,
+      defense,
+      attack,
+      experience,
+      specialDefense,
+    } = request.body;
 
-    const legendary = CreateLegendaryService.createLegendary(name, description, type, healthPoints, specialAttack, defense, attack, experience, specialDefense);
+    const legendary = await this.service.create(
+      name,
+      description,
+      type,
+      healthPoints,
+      specialAttack,
+      defense,
+      attack,
+      experience,
+      specialDefense
+    );
 
     return response.json(legendary);
   }
 }
-
-export default CreateLegendaryController;
